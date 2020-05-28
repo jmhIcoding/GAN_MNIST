@@ -25,8 +25,6 @@ class Generator:
         self.width = width
         self.channel = channel
         self.generator = self.build_model()
-        #OPTIMIZER = optimizers.Adam()
-        #self.generator.compile(optimizer=OPTIMIZER,loss=losses.binary_crossentropy,metrics =['accuracy'])
         self.generator.summary()
     def build_model(self,block_starting_size=128,num_blocks=4):
         model = models.Sequential(name='generator')
