@@ -25,7 +25,8 @@ class Discriminator:
         self.discriminator.compile(optimizer=OPTIMIZER,loss=losses.binary_crossentropy,metrics =['accuracy'])
         self.discriminator.summary()
     def build_model(self):
-        model = models.Sequential()
+        model = models.Sequential(name='discriminator')
+        model.add(layers.Flatten(input_shape=(self.width,self.height,self.channel)))
         model.add(layers.Dense(self.height*self.width*self.channel,input_shape=(self.width,self.height,self.channel)))
         model.add(layers.LeakyReLU(0.2))
         model.add(layers.Dense(self.height*self.width*self.channel//2))

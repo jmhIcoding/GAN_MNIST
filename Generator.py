@@ -8,6 +8,7 @@ import  keras
 from  keras import layers
 from keras import models
 from  keras import optimizers
+from keras import losses
 
 class Generator:
     def __init__(self,height=28,width=28,channel=1,latent_space_dimension=100):
@@ -24,9 +25,11 @@ class Generator:
         self.width = width
         self.channel = channel
         self.generator = self.build_model()
+        #OPTIMIZER = optimizers.Adam()
+        #self.generator.compile(optimizer=OPTIMIZER,loss=losses.binary_crossentropy,metrics =['accuracy'])
         self.generator.summary()
     def build_model(self,block_starting_size=128,num_blocks=4):
-        model = models.Sequential()
+        model = models.Sequential(name='generator')
         for i in range(num_blocks):
             if i ==0 :
                 model.add(layers.Dense(block_starting_size,input_shape=(self.latent_space_dimension,)))
